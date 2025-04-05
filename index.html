@@ -318,7 +318,7 @@ function syncWhatsAppCheckbox() {
 }
 
 function fetchAvailableSeats(tourId) {
-    fetch(`https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec?tourId=${encodeURIComponent(tourId)}`)
+    fetch(`https://script.google.com/macros/s/AKfycbwaTUzYZGIRgn0pklw3rXRJnVC4xzwHSQe0n24ZwZndPpkoA_Nf4CsBaPFtBXD1fifGgg/exec?tourId=${encodeURIComponent(tourId)}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById("available-seats").textContent = `Available Seats: ${data.availableSeats}`;
@@ -510,7 +510,7 @@ document.getElementById("persons").addEventListener("input", function() {
     if (tourType === "group") {
         let selectedTour = document.getElementById("group-tour-select").value;
         if (selectedTour) {
-            fetch(`https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec?tourId=${encodeURIComponent(selectedTour)}`)
+            fetch(`https://script.google.com/macros/s/AKfycbwaTUzYZGIRgn0pklw3rXRJnVC4xzwHSQe0n24ZwZndPpkoA_Nf4CsBaPFtBXD1fifGgg/exec?tourId=${encodeURIComponent(selectedTour)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (totalSeats > data.availableSeats) {
@@ -539,7 +539,7 @@ document.getElementById("children").addEventListener("input", function() {
     if (tourType === "group") {
         let selectedTour = document.getElementById("group-tour-select").value;
         if (selectedTour) {
-            fetch(`https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec?tourId=${encodeURIComponent(selectedTour)}`)
+            fetch(`https://script.google.com/macros/s/AKfycbwaTUzYZGIRgn0pklw3rXRJnVC4xzwHSQe0n24ZwZndPpkoA_Nf4CsBaPFtBXD1fifGgg/exec?tourId=${encodeURIComponent(selectedTour)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (totalSeats > data.availableSeats) {
@@ -649,7 +649,7 @@ document.getElementById("submit-btn").addEventListener("click", function(event) 
     };
 
     function submitBooking(data) {
-        fetch("https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbwaTUzYZGIRgn0pklw3rXRJnVC4xzwHSQe0n24ZwZndPpkoA_Nf4CsBaPFtBXD1fifGgg/exec", {
             method: "POST",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" }
