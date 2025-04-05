@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZUTRIVA Booking Form</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            font-family: Arial, sans-serif;
+        }
+        html, body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .container {
+            width: 40%;
+            margin: 20px auto;
+        }
+        .container1 {
+            width: 42%;
+            margin: 10px auto;
+        }
+        .container2 {
+            width: 42%;
+            margin: 10px auto;
+            background-color: transparent;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            background-color: white;
+            border: 1px solid #ccc;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: auto;
+            display: block;
+            margin-left: auto;
+        }
+        @media (max-width: 1080px) {
+            body, html {
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-image: url('image1.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                z-index: -1;
+            }
+            .container {
+                width: 85%;
+                margin: 10px auto;
+            }
+            .container1, .container2 {
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
+        img {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto 10px;
+            border-radius: 10px;
+        }
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        p { color: white; }
+        h1, h2, h3 { text-align: center; color: white; }
+        h1 { font-size: 20px; }
+        h2 { font-size: 16px; }
+        h3 { font-size: 14px; }
+        label { 
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            color: white;
+        }
+        select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            outline: none;
+            color: white;
+        }
+        select option {
+            background: #001f3f;
+            color: white;
+        }
+        input, button {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            outline: none;
+            color: white;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover { background: #0056b3; }
+        #payment-container, #tour-list-container, #qr-container, #tour-category-container, #from-madurai, #coimbatore-container, #group-tour-options { display: none; }
+    </style>
+</head>
+<body>
+<div class="container1">
+    <img src="logo.jpg" alt="Zutriva Logo">
+</div>
+
+<div class="container">
+    <h1>ZUTRIVA! BOOKING FORM</h1>
+    <h3>YOU BOOK! WE PLAN! MAGIC HAPPENS!</h3>
+</div>
+<div class="container">
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <label>Mobile Number</label>
+    <input type="text" id="mobile" oninput="syncWhatsAppCheckbox()">
+
+    <div class="checkbox-group">
+        <input type="checkbox" id="sameNumber" onclick="fillWhatsAppNumber()">
+        <label for="sameNumber">WhatsApp same as Mobile</label>
+    </div>
+
+    <label>WhatsApp Number</label>
+    <input type="text" id="whatsapp">
+</div>
+<div class="container">
+    <label>NOTE:</label>
+    <p style="font-size: 14px;">If the Child age is 13 and above He/She should consider as Adult Need to Pay Advance ₹1000 per person </p>
+    <p style="font-size: 14px;">Else He/She Under 13 No need to Pay Advance</p>
+</div>
+<div class="container">
+    <label>No. of Adult</label>
+    <input type="number" id="persons" min="1">
+
+    <label>No. of Children</label>
+    <p style="text-align: left; font-size: 14px;">Children Age should be 13 or Under 13</p>
+    <input type="number" id="children" min="0" value="0" oninput="toggleChildProof()">
+    <div id="child-proof-section" style="display: none;">
+        <label>Child Proof (e.g., Aadhaar)</label>
+        <input type="file" id="child-proof" accept="image/*">
+    </div>
+</div>
+<div class="container">
+    <label>Name of Others</label>
+    <input type="text" id="others" placeholder='Please use "," Eg: Nila, Surya or Nan.' style="color: white;">
+    <label>Relations</label>
+    <input type="text" id="relations" placeholder='Wife, Son, Daughter - No Unmarried Lovers' style="color: white;">
+</div>
+<div class="container">
+    <label>Opened Group Tour</label>
+    <p style="font-size: 15px;">Currently Opened group from Madurai</p>
+    <p><span style="font-size: 14px; font-weight: bold;">May 01 2025</span><span style="font-size: 14px;"> - MDU-KQN - Madurai to Kodaikanal</span></p>
+    <label>Tour Type</label>
+    <select id="tour-type">
+        <option value="" selected disabled>Choose</option>
+        <option value="group">Group Tour</option>
+        <option value="couple">Couple Tour</option>
+        <option value="family">Family Tour</option>
+    </select>
+</div>
+
+<div class="container" id="group-tour-options">
+    <label>Available Group Tours</label>
+    <select id="group-tour-select">
+        <option value="" selected disabled>Choose</option>
+        <option value="2025-05-01|madurai|hills|Kodaikanal Hills Station Trip">01-05-2025 Madurai to Kodaikanal Hills Station Trip</option>
+    </select>
+    <p id="available-seats" style="color: white; font-size: 14px; margin-top: 5px;"></p>
+</div>
+
+<div class="container">
+    <label>Date of Travel</label>
+    <input type="date" id="travel-date"> 
+    <label>Departure From</label>
+    <select id="departure">
+        <option value="" selected disabled>Choose</option>
+        <option value="madurai">Madurai</option>
+        <option value="coimbatore">Coimbatore</option>
+    </select>
+</div>
+<div id="from-madurai" class="container">
+    <h2>FROM MADURAI</h2>
+    <label>Tour Category</label>
+    <select id="tour-category">
+        <option value="" selected disabled>Choose</option>
+        <option value="beach">Beach Journeys</option>
+        <option value="hills">Hills Station Trips</option>
+        <option value="temple">Temple Tours</option>
+    </select>
+</div>
+<div id="coimbatore-container" class="container">
+    <h2>FROM COIMBATORE</h2>
+    <p>Oops! We're Sorry!</p>
+    <p>Currently We're Working Under To Depart You from Kovai!</p>
+    <p>Stay Connect With Us</p>
+    <img src="cbesad.jpg" alt="Kovai Depart Zutriva">
+</div>
+<div id="tour-list-container" class="container">
+    <label>Available Tours</label>
+    <select id="tour-list">
+        <option value="" selected disabled>Choose</option>
+    </select>
+</div>
+<div id="payment-container" class="container">
+    <h2>Proceeding to Pay Advance Amount</h2>
+    <p>Advance For Per Head is ₹1000</p>
+    <p>Total Advance Amount for <span id="total-persons">0</span> Persons is <span id="total-amount">₹0</span></p>
+    <button id="upi-button" style="background: #e65100; color: white; font-size: 16px; border: none; padding: 6px 12px; cursor: pointer; border-radius: 5px; width: auto; display: block; margin: 10px auto;">
+        Pay Advance
+    </button>
+</div>
+<div id="qr-container" class="container">
+    <h2>Upload Payment Screenshot</h2>
+    <input type="file" id="payment-proof" accept="image/*">
+</div>
+<div class="container2">
+    <button id="submit-btn" class="submit-btn">Submit</button>
+</div>
+<div class="container2">
+    <p style="text-align: center; padding: 10px 0; font-size: 12px;">© 2025 All Rights Reserved By Zutriva</p>
+</div>
+
+<script>
+function fillWhatsAppNumber() {
+    const mobile = document.getElementById('mobile').value;
+    const checkbox = document.getElementById('sameNumber');
+    const whatsapp = document.getElementById('whatsapp');
+
+    if (checkbox.checked) {
+        whatsapp.value = mobile;
+        whatsapp.readOnly = true;
+    } else {
+        whatsapp.value = "";
+        whatsapp.readOnly = false;
+    }
+}
+
+function toggleChildProof() {
+    const children = document.getElementById("children").value;
+    const proofSection = document.getElementById("child-proof-section");
+    proofSection.style.display = children >= 1 ? "block" : "none";
+} 
+
+function syncWhatsAppCheckbox() {
+    const checkbox = document.getElementById('sameNumber');
+    if (checkbox.checked) {
+        fillWhatsAppNumber();
+    }
+}
+
+function fetchAvailableSeats(tourId) {
+    fetch(`https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec?tourId=${encodeURIComponent(tourId)}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("available-seats").textContent = `Available Seats: ${data.availableSeats}`;
+        })
+        .catch(error => {
+            console.error("Error fetching seats:", error);
+            document.getElementById("available-seats").textContent = "Error fetching available seats.";
+        });
+}
+
+document.getElementById("tour-type").addEventListener("change", function() {
+    let tourType = this.value;
+    let groupTourContainer = document.getElementById("group-tour-options");
+    let travelDate = document.getElementById("travel-date");
+    let tourCategory = document.getElementById("tour-category");
+    let tourList = document.getElementById("tour-list");
+    let fromMadurai = document.getElementById("from-madurai");
+    let tourListContainer = document.getElementById("tour-list-container");
+    let groupTourSelect = document.getElementById("group-tour-select");
+    let departureSelect = document.getElementById("departure");
+    let coimbatoreContainer = document.getElementById("coimbatore-container");
+
+    travelDate.value = "";
+    tourCategory.value = "";
+    tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
+    groupTourSelect.value = "";
+    departureSelect.value = "";
+    document.getElementById("payment-container").style.display = "none";
+    document.getElementById("qr-container").style.display = "none";
+    fromMadurai.style.display = "none";
+    tourListContainer.style.display = "none";
+    coimbatoreContainer.style.display = "none";
+
+    if (tourType === "group") {
+        groupTourContainer.style.display = "block";
+        travelDate.disabled = true;
+        tourCategory.disabled = true;
+        tourList.disabled = true;
+        departureSelect.disabled = true;
+    } else {
+        groupTourContainer.style.display = "none";
+        travelDate.disabled = false;
+        tourCategory.disabled = false;
+        tourList.disabled = false;
+        departureSelect.disabled = false;
+    }
+
+    let personsInput = document.getElementById("persons");
+    let persons = parseInt(personsInput.value) || 0;
+
+    if (tourType === "couple" && persons > 2) {
+        alert("Couples Can't Be Above Two Right!");
+        personsInput.value = "2";
+    } else if (tourType === "family" && persons > 4) {
+        alert("Family Tours are limited to 4 persons For Private Tour or Join Group tour if opened or Contact 6374979879 for larger private tours.");
+        personsInput.value = "4";
+    } else if (tourType === "group" && persons > 20) {
+        alert("Contact 6374979879 to book above 20 persons for a private Group Tour");
+        personsInput.value = "20";
+    }
+
+    let amount = (parseInt(personsInput.value) || 0) * 1000;
+    document.getElementById("total-persons").textContent = personsInput.value || "0";
+    document.getElementById("total-amount").textContent = `₹${amount}`;
+});
+
+document.getElementById("group-tour-select").addEventListener("change", function() {
+    let selectedTour = this.value;
+    let [date, departure, category, tourName] = selectedTour ? selectedTour.split("|") : ["", "", "", ""];
+    
+    let travelDate = document.getElementById("travel-date");
+    let tourCategory = document.getElementById("tour-category");
+    let tourList = document.getElementById("tour-list");
+    let departureSelect = document.getElementById("departure");
+    let fromMadurai = document.getElementById("from-madurai");
+    let tourListContainer = document.getElementById("tour-list-container");
+    let coimbatoreContainer = document.getElementById("coimbatore-container");
+
+    if (selectedTour) {
+        travelDate.value = date;
+        departureSelect.value = departure;
+        tourCategory.value = category;
+        tourList.innerHTML = `<option value="${tourName}" selected>${tourName}</option>`;
+        
+        if (departure === "madurai") {
+            fromMadurai.style.display = "block";
+            coimbatoreContainer.style.display = "none";
+        } else if (departure === "coimbatore") {
+            fromMadurai.style.display = "none";
+            coimbatoreContainer.style.display = "block";
+        }
+        tourListContainer.style.display = "block";
+        document.getElementById("payment-container").style.display = "block";
+        document.getElementById("qr-container").style.display = "block";
+        
+        fetchAvailableSeats(selectedTour);
+        
+        let persons = document.getElementById("persons").value;
+        let amount = persons * 1000;
+        document.getElementById("upi-button").onclick = function() {
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Advance%20Payment%20to%20Zutriva`;
+        };
+    } else {
+        travelDate.value = "";
+        departureSelect.value = "";
+        tourCategory.value = "";
+        tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
+        fromMadurai.style.display = "none";
+        tourListContainer.style.display = "none";
+        document.getElementById("payment-container").style.display = "none";
+        document.getElementById("qr-container").style.display = "none";
+        coimbatoreContainer.style.display = "none";
+        document.getElementById("available-seats").textContent = "";
+    }
+});
+
+document.getElementById("travel-date").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("departure").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("departure").addEventListener("change", function() {
+    let departure = this.value;
+    let fromMadurai = document.getElementById("from-madurai");
+    let coimbatoreContainer = document.getElementById("coimbatore-container");
+    let tourListContainer = document.getElementById("tour-list-container");
+
+    document.getElementById("tour-category").value = "";
+    document.getElementById("tour-list").innerHTML = "<option value='' selected disabled>Choose</option>";
+    tourListContainer.style.display = "none";
+    document.getElementById("payment-container").style.display = "none";
+    document.getElementById("qr-container").style.display = "none";
+
+    if (departure === "madurai") {
+        fromMadurai.style.display = "block";
+        coimbatoreContainer.style.display = "none";
+    } else if (departure === "coimbatore") {
+        fromMadurai.style.display = "none";
+        coimbatoreContainer.style.display = "block";
+    } else {
+        fromMadurai.style.display = "none";
+        coimbatoreContainer.style.display = "none";
+    }
+});
+
+document.getElementById("tour-category").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("tour-list").addEventListener("focus", function() {
+    if (document.getElementById("tour-type").value === "group") {
+        alert("Choose the opened available group tour");
+        this.blur();
+    }
+});
+
+document.getElementById("persons").addEventListener("input", function() {
+    let tourType = document.getElementById("tour-type").value;
+    let persons = parseInt(this.value) || 0;
+    let children = parseInt(document.getElementById("children").value) || 0;
+    let totalSeats = persons + children;
+
+    if (tourType === "couple" && persons > 2) {
+        alert("Couples Can't Be Above Two Right!");
+        this.value = "2";
+        persons = 2;
+    } else if (tourType === "family" && persons > 4) {
+        alert("Family Tours are limited to 4 persons For Private Tour or Join Group tour if opened or Contact 6374979879 for larger private tours.");
+        this.value = "4";
+        persons = 4;
+    } else if (tourType === "group" && totalSeats > 20) {
+        alert("Group Tours are limited to 20 persons. Contact 6374979879 for larger private tours.");
+        this.value = Math.max(0, 20 - children);
+        persons = parseInt(this.value) || 0;
+    }
+
+    if (tourType === "group") {
+        let selectedTour = document.getElementById("group-tour-select").value;
+        if (selectedTour) {
+            fetch(`https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec?tourId=${encodeURIComponent(selectedTour)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (totalSeats > data.availableSeats) {
+                        alert("Not enough seats available. Contact 6374979879 for alternatives.");
+                        this.value = Math.max(0, data.availableSeats - children);
+                        persons = parseInt(this.value) || 0;
+                    }
+                    let amount = persons * 1000;
+                    document.getElementById("total-persons").textContent = persons;
+                    document.getElementById("total-amount").textContent = `₹${amount}`;
+                });
+        }
+    } else {
+        let amount = persons * 1000;
+        document.getElementById("total-persons").textContent = persons;
+        document.getElementById("total-amount").textContent = `₹${amount}`;
+    }
+});
+
+document.getElementById("children").addEventListener("input", function() {
+    let tourType = document.getElementById("tour-type").value;
+    let children = parseInt(this.value) || 0;
+    let persons = parseInt(document.getElementById("persons").value) || 0;
+    let totalSeats = persons + children;
+
+    if (tourType === "group") {
+        let selectedTour = document.getElementById("group-tour-select").value;
+        if (selectedTour) {
+            fetch(`https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec?tourId=${encodeURIComponent(selectedTour)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (totalSeats > data.availableSeats) {
+                        alert("Not enough seats available. Contact 6374979879 for alternatives.");
+                        this.value = Math.max(0, data.availableSeats - persons);
+                    }
+                    toggleChildProof();
+                });
+        }
+    } else {
+        toggleChildProof();
+    }
+});
+
+document.getElementById("submit-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    let submitButton = document.getElementById("submit-btn");
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+    submitButton.style.background = "#888";
+
+    let requiredFields = [
+        { id: "name", message: "Name is required." },
+        { id: "mobile", message: "Mobile Number is required." },
+        { id: "whatsapp", message: "WhatsApp Number is required." },
+        { id: "tour-type", message: "Tour Type is required." },
+        { id: "persons", message: "Number of Persons is required." },
+        { id: "others", message: "Name of Others is required." },
+        { id: "relations", message: "Relations field is required." },
+        { id: "travel-date", message: "Date of Travel is required." },
+        { id: "departure", message: "Departure location is required." },
+        { id: "tour-category", message: "Tour Category is required." },
+        { id: "tour-list", message: "You must select an available tour." },
+        { id: "payment-proof", message: "Payment proof is required." }
+    ];
+
+    let children = parseInt(document.getElementById("children").value) || 0;
+    if (children > 0 && document.getElementById("tour-type").value !== "couple") {
+        requiredFields.push(
+            { id: "child-proof", message: "Child proof (e.g., Aadhaar) is required when children are included." }
+        );
+    }
+
+    for (let field of requiredFields) {
+        let inputElement = document.getElementById(field.id);
+        if (!inputElement.value.trim()) {
+            alert(field.message);
+            inputElement.focus();
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit";
+            submitButton.style.background = "#007BFF";
+            return;
+        }
+    }
+
+    let name = document.getElementById("name").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+    let whatsapp = document.getElementById("whatsapp").value.trim();
+    let tourType = document.getElementById("tour-type").value;
+    let persons = parseInt(document.getElementById("persons").value) || 0;
+    let others = document.getElementById("others").value.trim();
+    let relations = document.getElementById("relations").value.trim();
+    let travelDate = document.getElementById("travel-date").value;
+    let departure = document.getElementById("departure").value;
+    let tourCategory = document.getElementById("tour-category").value;
+    let tourList = document.getElementById("tour-list").value;
+    let paymentProof = document.getElementById("payment-proof").files[0];
+    let childProof = (children > 0 && tourType !== "couple") ? document.getElementById("child-proof").files[0] : null;
+    let groupTour = tourType === "group" ? document.getElementById("group-tour-select").value : null;
+
+    let readerPayment = new FileReader();
+    readerPayment.readAsDataURL(paymentProof);
+    readerPayment.onload = function() {
+        let base64Payment = readerPayment.result.split(',')[1];
+        
+        let data = {
+            name: name,
+            mobile: mobile,
+            whatsapp: whatsapp,
+            tourType: tourType,
+            persons: persons,
+            children: children,
+            others: others,
+            relations: relations,
+            travelDate: travelDate,
+            departure: departure,
+            tourCategory: tourCategory,
+            tourList: tourList,
+            image: base64Payment,
+            mimeType: paymentProof.type,
+            imageName: paymentProof.name,
+            groupTour: groupTour
+        };
+
+        if (childProof) {
+            let readerChild = new FileReader();
+            readerChild.readAsDataURL(childProof);
+            readerChild.onload = function() {
+                data.childProofImage = readerChild.result.split(',')[1];
+                data.childProofMimeType = childProof.type;
+                data.childProofImageName = childProof.name;
+                submitBooking(data);
+            };
+        } else {
+            submitBooking(data);
+        }
+    };
+
+    function submitBooking(data) {
+        fetch("https://script.google.com/macros/s/AKfycbzdR62mUo16oIbzTDWg8gl9bAB2fZ3nL9lzwlctEbPf71AxP3wgFJjjA47UZLcasb7cxw/exec", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.status === "Success") {
+                alert("Booking submitted successfully!\nPayment Invoice will be forwarded within 24hr");
+                resetForm();
+                if (data.tourType === "group") {
+                    document.getElementById("available-seats").textContent = `Available Seats: ${result.availableSeats}`;
+                }
+            } else {
+                alert(result.error || result.message);
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit";
+                submitButton.style.background = "#007BFF";
+            }
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit";
+            submitButton.style.background = "#007BFF";
+        });
+    }
+});
+
+document.getElementById("tour-category").addEventListener("change", function() {
+    let tourCategory = this.value;
+    let tourList = document.getElementById("tour-list");
+    tourList.innerHTML = "<option value='' selected disabled>Choose</option>";
+
+    const tours = {
+        "beach": [
+            "Chidambaram Beach Journey",
+            "Mahabalipuram Beach Journey",
+            "Rameshwaram Beach Journey",
+            "Kanyakumari Beach Journey",
+            "Thoothukudi Beach Journey",
+            "Velankanni Beach Journey"
+        ],
+        "hills": [
+            "Kolli Hills Station Trip",
+            "Kodaikanal Hills Station Trip",
+            "Ooty Hills Station Trip",
+            "Valparai Hills Station Trip",
+            "Yercaud Hills Station Trip"
+        ],
+        "temple": [
+            "Arupadai Murugan Temple Tour",
+            "Kanyakumari Temple Tour",
+            "Coimbatore Temple Tour",
+            "Chidambaram Temple Tour",
+            "Kumbakonam Temple Tour",
+            "Rameshwaram Temple Tour",
+            "Srirangam Temple Tour",
+            "Thanjavur Temple Tour",
+            "Thiruvannamalai Temple Tour",
+            "Velankanni Temple Tour"
+        ]
+    };
+
+    if (tours[tourCategory]) {
+        tours[tourCategory].forEach(tour => {
+            let option = document.createElement("option");
+            option.value = tour;
+            option.textContent = tour;
+            tourList.appendChild(option);
+        });
+    }
+    document.getElementById("tour-list-container").style.display = "block";
+});
+
+document.getElementById("tour-list").addEventListener("change", function() {
+    if (document.getElementById("tour-type").value !== "group") {
+        let persons = document.getElementById("persons").value;
+        let amount = persons * 1000;
+        document.getElementById("upi-button").onclick = function() {
+            window.location.href = `upi://pay?pa=harish2k0318-2@okicici&pn=Zutriva&am=${amount}&cu=INR&tn=Advance%20Payment%20to%20Zutriva`;
+        };
+        document.getElementById("payment-container").style.display = "block";
+        document.getElementById("qr-container").style.display = "block";
+    }
+});
+
+function resetForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("mobile").value = "";
+    document.getElementById("whatsapp").value = "";
+    document.getElementById("tour-type").value = "";
+    document.getElementById("persons").value = "";
+    document.getElementById("children").value = "0";
+    document.getElementById("others").value = "";
+    document.getElementById("relations").value = "";
+    document.getElementById("travel-date").value = "";
+    document.getElementById("departure").value = "";
+    document.getElementById("tour-category").value = "";
+    document.getElementById("tour-list").value = "";
+    document.getElementById("payment-proof").value = "";
+    document.getElementById("child-proof").value = "";
+    document.getElementById("group-tour-select").value = "";
+    document.getElementById("from-madurai").style.display = "none";
+    document.getElementById("coimbatore-container").style.display = "none";
+    document.getElementById("tour-list-container").style.display = "none";
+    document.getElementById("payment-container").style.display = "none";
+    document.getElementById("qr-container").style.display = "none";
+    document.getElementById("group-tour-options").style.display = "none";
+    document.getElementById("total-persons").textContent = "0";
+    document.getElementById("total-amount").textContent = "₹0";
+    document.getElementById("available-seats").textContent = "";
+    document.getElementById("submit-btn").disabled = false;
+    document.getElementById("submit-btn").textContent = "Submit";
+    document.getElementById("submit-btn").style.background = "#007BFF";
+}
+</script>
+</body>
+</html>
